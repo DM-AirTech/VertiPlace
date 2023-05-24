@@ -10,7 +10,8 @@ VertiPlace<sup>GWC</sup> is a software solution that correlates hourly weather d
 
 Note: This GitHub repository focuses on the API of VertiPlace<sup>GWC</sup>. For access to the GUI, please visit our website directly.
 
-![image](https://github.com/DM-AirTech/VertiPlace/assets/40840002/cfe47fbc-6e2f-4821-badd-9c7045ecd146)
+![Screenshot 2023-05-24 140840](https://github.com/DM-AirTech/VertiPlace/assets/40840002/cbe33e91-6687-45ce-b7e6-52e404c624c7)
+
 
 ## 2. Obtaining API Key
 
