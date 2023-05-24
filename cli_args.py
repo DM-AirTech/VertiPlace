@@ -36,7 +36,7 @@ def parse_arguments():
     # parser.add_argument("--thunder", type=str)
     # parser.add_argument("--hail", type=str)
     # parser.add_argument("--blizz", type=str)
-    parser.add_argument("--hours", type=check_hours, required=True, help="Comma-separated list of integers from 1 to 24 to represent hours of the day")
-    parser.add_argument("--seasons", type=check_seasons, required=True, help="Comma-separated list of integers from 1 to 4 to represent quarters of the year")
+    parser.add_argument("--hours", type=check_hours, help="Comma-separated list of integers from 1 to 24 to represent hours of the day", default="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24")
+    parser.add_argument("--seasons", type=check_seasons, help="Comma-separated list of integers from 1 to 4 to represent quarters of the year", default="1,2,3,4")
 
     return parser.parse_args()
