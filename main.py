@@ -14,12 +14,15 @@ The main coordination and execution of the program happen here.
 
 from url_builder import url_string_generator
 from cli_args import parse_arguments
+from checks import check_args
 
 if __name__ == '__main__':
     from utils import process_output
+    
 
     args = parse_arguments()
-    output = url_string_generator(args.api_key, args.lat, args.lon, args.w10, args.w100, args.gust, args.rain, args.t_min, args.t_max, args.p_alt, args.min_fl, args.min_vis, args.min_cbh, args.icing, args.thunder, args.hail, args.blizz, args.hours, args.seasons)
+    check_args(args)
+    output = url_string_generator(args.api_key, args.lat, args.lon, args.w10, args.w100, args.gust, args.rain, args.t_min, args.t_max, args.p_alt, args.min_fl, args.min_vis, args.min_cbh, args.icing, args.hours, args.seasons)
     output_list = process_output(output)
     print('Operability=' + output_list[1] + '%') 
     print('h3_index=' + output_list[0])
