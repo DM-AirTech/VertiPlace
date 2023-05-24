@@ -1,4 +1,22 @@
+# -*- coding: utf-8 -*-
+"""
+Company Name: DM-AirTech GmbH
+Author: Harsh Panwar
+Email: harsh@dm-airtech.com
+Created on: Mon May 24 12:45:06 2023
+
+Copyright (c) 2023, DM-AirTech GmbH
+
+Description: This script holds the `url_string_generator` function which is used to 
+construct a URL for API request. The function takes several weather-related parameters, 
+constructs an API call, makes the request, and returns the response as a text string.
+This function is essential for querying the VertiPlaceGWC API and receiving relevant data 
+for further processing.
+"""
+
+
 import requests 
+from utils import m2ft, ft2m, Pamb, H
 
 def url_string_generator(api_key,lat, lon, w10, w100, gust, rain, t_min, t_max, p_alt, min_fl, min_vis, min_cbh, icing, thunder, hail, blizz, hours, seasons):  
     if p_alt and min_fl: 

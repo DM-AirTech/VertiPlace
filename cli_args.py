@@ -1,3 +1,18 @@
+# -*- coding: utf-8 -*-
+"""
+Company Name: DM-AirTech GmbH
+Author: Harsh Panwar
+Email: harsh@dm-airtech.com
+Created on: Mon May 24 12:45:06 2023
+
+Copyright (c) 2023, DM-AirTech GmbH
+
+Description: This module is responsible for handling and parsing command line arguments. 
+It defines the requirements and specifications for the arguments, and prepares 
+them for use in the main program.
+"""
+
+
 import argparse
 
 def parse_arguments():

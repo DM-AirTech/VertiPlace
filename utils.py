@@ -1,4 +1,25 @@
+# -*- coding: utf-8 -*-
+"""
+Company Name: DM-AirTech GmbH
+Author: Harsh Panwar
+Email: harsh@dm-airtech.com
+Created on: Mon May 24 12:45:06 2023
+
+Copyright (c) 2023, DM-AirTech GmbH
+
+Description: This module contains a set of utility functions responsible for calculating 
+environmental parameters such as atmospheric pressure and altitude conversion. These functions 
+are utilized in the main program to compute necessary parameters for constructing the API request.
+"""
+
 import math 
+
+def process_output(output):
+    output = output.replace("\\","").replace("\"","").replace('n', '') 
+    output_list = output.split('_') 
+    output_list[1] = float(output_list[1])*100 
+    output_list[1] = str(output_list[1]) 
+    return output_list
 
 def ft2m(H): 
 # Convert altitude in feet to meters    
