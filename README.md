@@ -74,9 +74,13 @@ h3_index=8529a1d7fffffff
 Run the VOI_bar_chart.py and VOI_radar_chart.py to visualize the bar and radar charts.
 Here are some example charts generated:
 
-![Figure_1](https://github.com/DM-AirTech/VertiPlace/assets/40840002/ec73b9d4-29dc-46e9-8cf7-8a40acd7bd60)
+<p float="left">
+  <img src="https://github.com/DM-AirTech/VertiPlace/assets/40840002/ec73b9d4-29dc-46e9-8cf7-8a40acd7bd60" width="49%" />
+  <img src="https://github.com/DM-AirTech/VertiPlace/assets/40840002/21d6d8fa-e2cc-4faa-89d1-a773d36c8cce" width="49%" /> 
+</p>
 
-![example_1](https://github.com/DM-AirTech/VertiPlace/assets/40840002/10a3b7ea-df94-4180-8d26-9d3fdec6122f)
+
+
 
 ## Support
 
