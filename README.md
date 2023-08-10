@@ -70,6 +70,14 @@ Below is an example of the output received based on the example input used in th
 Operability=86.04%
 h3_index=8529a1d7fffffff
 ```
+## 4. Visualization
+Run the VOI_bar_chart.py and VOI_radar_chart.py to visualize the bar and radar charts.
+Here are some example charts generated:
+
+![Figure_1](https://github.com/DM-AirTech/VertiPlace/assets/40840002/ec73b9d4-29dc-46e9-8cf7-8a40acd7bd60)
+
+![example_1](https://github.com/DM-AirTech/VertiPlace/assets/40840002/10a3b7ea-df94-4180-8d26-9d3fdec6122f)
+
 ## Support
 
 For any questions, concerns, or technical support, please reach out to our dedicated support team at info@dm-airtech.com. 
