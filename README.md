@@ -32,10 +32,10 @@ pip install -r requirements.txt
 ```
 3. Change your current directory to the VertiPlace directory:
 ```bash
-cd VertiPlace`
+cd VertiPlace
 ```
 4. Run the main.py file from the terminal, supplying the necessary arguments. An example is shown below:
-```
+```bash
 python3 main.py --api_key API_KEY --lat=34.052238 --lon=-118.243344 --gust=10.3 --t_min=-6.7 --t_max=42 --rain=25 --hours=12 --seasons=1     
 ```
 Make sure to replace API_KEY with your actual API key.
