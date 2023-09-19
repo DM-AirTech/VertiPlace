@@ -24,12 +24,16 @@ To run the VertiPlace<sup>GWC</sup> Python API, follow the steps below:
 1. Clone the VertiPlace repository from Github to your local machine by running the following command:
 
 `git clone https://github.com/DM-AirTech/VertiPlace.git`
+2. Install the required packages:
 
-2. Change your current directory to the VertiPlace directory:
+```bash
+pip install -r requirements.txt
+```
+3. Change your current directory to the VertiPlace directory:
 
 `cd VertiPlace`
 
-3. Run the main.py file from the terminal, supplying the necessary arguments. An example is shown below:
+4. Run the main.py file from the terminal, supplying the necessary arguments. An example is shown below:
 ```
 python3 main.py --api_key API_KEY --lat=34.052238 --lon=-118.243344 --gust=10.3 --t_min=-6.7 --t_max=42 --rain=25 --hours=12 --seasons=1     
 ```
