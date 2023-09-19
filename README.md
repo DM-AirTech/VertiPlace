@@ -22,8 +22,9 @@ To access the VertiPlace<sup>GWC</sup> data through the API, you will need an AP
 To run the VertiPlace<sup>GWC</sup> Python API, follow the steps below:
 
 1. Clone the VertiPlace repository from Github to your local machine by running the following command:
-
-`git clone https://github.com/DM-AirTech/VertiPlace.git`
+```bash
+git clone https://github.com/DM-AirTech/VertiPlace.git
+```
 2. Install the required packages:
 
 ```bash
