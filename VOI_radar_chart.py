@@ -20,14 +20,20 @@ import subprocess
 # read the CSV file
 df = pd.read_csv('worldcities.csv')
 
-def get_voi(city, gust=15, t_min=-6.7, t_max=42, rain=25, w10=10, w100=12, hours="1,2,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18,19,20,21,22,23,24", seasons="1,2,3,4"):
+def get_voi(city, api_key, **kwargs):
     lat = city['lat']
     lng = city['lng']
-    result = subprocess.run(['python3', 'main.py', '--api_key', 'API_KEY', 
-                             '--lat', str(lat), '--lon', str(lng), '--gust', str(gust), '--t_min', str(t_min), 
-                             '--t_max', str(t_max), '--rain', str(rain), '--w10', str(w10), '--w100', str(w100), 
-                             '--hours', str(hours), '--seasons', str(seasons)], 
-                            stdout=subprocess.PIPE)
+    
+    cmd_args = ['python3', 'main.py', '--api_key', str(api_key), 
+                '--lat', str(lat), '--lon', str(lng)]
+    
+    # Add all passed-in parameters to cmd_args at once
+    for key, value in kwargs.items():
+        cmd_args.append(f'--{key}')
+        cmd_args.append(str(value))
+    
+    print(cmd_args)  # For debugging
+    result = subprocess.run(cmd_args, stdout=subprocess.PIPE)
     output = result.stdout.decode('utf-8')
     lines = output.split('\n')
     for line in lines:
@@ -36,43 +42,47 @@ def get_voi(city, gust=15, t_min=-6.7, t_max=42, rain=25, w10=10, w100=12, hours
             return voi
     return None
 
-def get_mean_voi(city_datas, **kwargs):
+def get_mean_voi(city_datas, api_key, **kwargs):
     total_voi = 0
     count = 0
-
+    print(kwargs)
     if isinstance(city_datas, pd.DataFrame):  # if city_datas is a DataFrame, iterate through its rows
         for index, city_data in city_datas.iterrows():
-            total_voi += get_voi(city_data, **kwargs)
+            total_voi += get_voi(city_data, api_key, **kwargs)
             count += 1
     else:  # else, assume city_datas is a list of Series
         for city_data in city_datas:
-            total_voi += get_voi(city_data, **kwargs)
+            total_voi += get_voi(city_data, api_key, **kwargs)
             count += 1
 
     return total_voi / count if count > 0 else None
 
-def simulate_voi(city_datas, gust=15, t_min=-6.7, t_max=42, rain=25, w10=10, w100=12, deltas=[0,0.1,0.2]):
-    parameters = {'gust': gust, 't_min': t_min, 't_max': t_max, 'rain': rain, 'w10': w10, 'w100': w100}
-    fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
-    max_voi = 0  # initialize max_voi variable
-    min_voi = float('inf')  # initialize min_voi variable
+def simulate_voi(city_datas, deltas, **kwargs):
+    fig, ax = plt.subplots(figsize=(12, 6), subplot_kw=dict(polar=True))
+    max_voi = 0
+    min_voi = float('inf')
+    api_key = kwargs.get('api_key')
+
+    original_params = {k: v for k, v in kwargs.items() if isinstance(v, (float, int))}
 
     for delta in deltas:
         voi_values = []
         labels = []
 
-        for param, value in parameters.items():
-            if value != 0:  # Skip parameters with zero values
-                labels.append(param)
-                voi_changed = get_mean_voi(city_datas, **{**parameters, param: value * (1 + delta)})
-                min_voi = min(min_voi, voi_changed)  # update min_voi if necessary
+        # Apply delta to each parameter individually and record its effect
+        for param in original_params.keys():
+            temp_params = original_params.copy()
+            temp_params[param] *= (1 + delta)
+            
+            # Update min and max VOI values
+            voi_changed = get_mean_voi(city_datas, api_key, **temp_params)
+            min_voi = min(min_voi, voi_changed)
+            max_voi = max(max_voi, voi_changed)
 
-        base_voi = min_voi * 0.9  # 90% of minimum VOI
-        for param, value in parameters.items():
-            if value != 0:  # Skip parameters with zero values
-                voi_changed = get_mean_voi(city_datas, **{**parameters, param: value * (1 + delta)})
-                voi_values.append(voi_changed - base_voi)
-                max_voi = max(max_voi, voi_changed)  # update max_voi if necessary
+            # Calculate base VOI and VOI change
+            base_voi = min_voi * 0.9
+            voi_values.append(voi_changed - base_voi)
+            labels.append(param)
 
         angles = np.linspace(0, 2 * np.pi, len(labels), endpoint=False).tolist()
         voi_values += voi_values[:1]
@@ -97,19 +107,19 @@ def simulate_voi(city_datas, gust=15, t_min=-6.7, t_max=42, rain=25, w10=10, w10
     ax.legend(loc='upper left', bbox_to_anchor=(1.05, 1))
     plt.show()
 
+def generate_VOI_radar_chart(args):
+    city_names = args.city.split(',')
+    city_datas = [df[df['city'] == name.strip()].iloc[0] for name in city_names]
+      # Convert args to a dictionary
+    args_dict = vars(args)
+    deltas = args.delta if args.delta is not None else [0, 0.1, 0.2]
 
-# single city
-city_name = "London"
-city_data = df[df['city'] == city_name].iloc[0]
-simulate_voi([city_data])
+    args_dict = {k: v for k, v in args_dict.items() if v is not None}
+    # Remove keys that aren't needed for simulate_voi
+    for key in ['city', 'visualize', 'lat', 'lon']:
+        args_dict.pop(key, None)
 
-# multiple cities
-# city_names = ["London", "Los Angeles", "Abu Dhabi"]
-# city_datas = [df[df['city'] == name].iloc[0] for name in city_names]
-# simulate_voi(city_datas)
+    
+    # Call simulate_voi with the remaining args
+    simulate_voi(city_datas, deltas=deltas, **args_dict)
 
-# # top 10 cities of a country
-# country_name = "France"
-# city_datas = df[df['country'] == country_name].nlargest(10, 'population')
-# print(city_datas)
-# simulate_voi(city_datas)
