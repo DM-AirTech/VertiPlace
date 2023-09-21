@@ -80,9 +80,9 @@ Run the main.py with the visualize flag and delta to visualize the radar chart. 
 ```bash
 python3 main.py --api_key API_KEY --city "Los Angeles, Chicago" --visualize "radar" --delta 0 0.1 0.2 --gust=10 --w10=12 --w100=14 --rain=25 --t_min=10 --t_max=40   
 ```
-Note: start delta with 0 for Initial VOI.
-The script will generate a radar chart and display it. It might take few minutes to generate the chart. 
-Here are some example charts generated:
+Note: start delta with 0 for Initial VOI. <br>
+The script will generate a radar chart and display it. It might take few minutes to generate the chart. <br>
+Here are some example charts generated: <br>
 
 <p float="left">
   <img src="https://github.com/DM-AirTech/VertiPlace/assets/40840002/ec73b9d4-29dc-46e9-8cf7-8a40acd7bd60" width="49%" />
