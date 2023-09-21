@@ -76,7 +76,12 @@ Operability=86.04%
 h3_index=8529a1d7fffffff
 ```
 ## 4. Visualization
-Run the VOI_bar_chart.py and VOI_radar_chart.py to visualize the bar and radar charts.
+Run the main.py with the visualize flag and delta to visualize the radar chart. An example is shown below.
+```bash
+python3 main.py --api_key API_KEY --city "Los Angeles, Chicago" --visualize "radar" --delta 0 0.1 0.2 --gust=10 --w10=12 --w100=14 --rain=25 --t_min=10 --t_max=40   
+```
+Note: start delta with 0 for Initial VOI.
+The script will generate a radar chart and display it. It might take few minutes to generate the chart. 
 Here are some example charts generated:
 
 <p float="left">
