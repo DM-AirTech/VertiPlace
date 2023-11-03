@@ -28,25 +28,25 @@ def url_string_generator(api_key,lat, lon, w10, w100, gust, rain, t_min, t_max, 
     url_string= url_string + '?apikey=' + api_key #required 
     url_string= url_string + '&lat=' + str(lat) #required 
     url_string= url_string + '&lon=' + str(lon) #required 
-    if w10: 
+    if w10 is not None: 
       url_string= url_string + '&max_speed10=' + str(w10) 
-    if w100: 
+    if w100 is not None: 
       url_string= url_string + '&max_speed100=' + str(w100) 
-    if gust: 
+    if gust is not None: 
       url_string= url_string + '&max_gust=' + str(gust)
-    if t_max: 
+    if t_max is not None: 
       url_string= url_string + '&max_temp=' + str(t_max) 
-    if t_min: 
+    if t_min is not None: 
       url_string= url_string + '&min_temp=' + str(t_min)
-    if rain: 
+    if rain is not None: 
       url_string= url_string + '&max_rain=' + str(rain)
     if pres_lim: 
       url_string= url_string + "&preslim=" + str(pres_lim) 
-    if min_cbh: 
+    if min_cbh is not None: 
       url_string= url_string + '&min_cbh=' + str(min_cbh)
-    if min_vis: 
+    if min_vis is not None: 
       url_string= url_string + '&min_vis=' + str(min_vis)
-    if icing: 
+    if icing is not None: 
       url_string= url_string + '&icing=' + str(icing) 
     # if thunder: 
     #   url_string= url_string + '&thunder=' + thunder 

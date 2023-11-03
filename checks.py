@@ -21,10 +21,10 @@ def check_args(args):
     """
     
     if not (
-        args.w10 or args.w100 or args.gust or args.rain 
-        or (args.t_min and args.t_max) 
-        or (args.p_alt and args.min_fl) 
-        or args.min_vis or args.min_cbh or args.icing
+        args.w10 is not None or args.w100 is not None or args.gust is not None or args.rain is not None 
+        or (args.t_min is not None and args.t_max is not None) 
+        or (args.p_alt is not None and args.min_fl is not None) 
+        or args.min_vis is not None or args.min_cbh is not None or args.icing is not None
     ):
         raise argparse.ArgumentTypeError("At least one of the following needs to be given in addition to the required fields: \
                                           'w10', 'w100', 'gust', 'rain', 't_min' & 't_max' (both together), 'p_alt' & 'min_fl' (both together), 'min_vis', 'min_cbh', 'icing'")
