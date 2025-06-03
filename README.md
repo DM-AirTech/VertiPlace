@@ -6,7 +6,7 @@
 [![Website](https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fwww.dm-airtech.com/)](https://www.dm-airtech.com/)
 
 ## 1. Introduction
-VertiPlace<sup>GWC</sup> is a software solution that correlates hourly weather data available at the climate scale, given geography and VTOL specifications, to query and perform customized Operability Analysis for the positioning of Vertiports.
+Open repository containing user scripts to call VertiPlace<sup>GWC</sup>, a software solution that correlates hourly weather data available at the climate scale, given geography and VTOL specifications, to query and perform customized Operability Analysis for the positioning of Vertiports.
 
 Note: This GitHub repository focuses on the API of VertiPlace<sup>GWC</sup>. For access to the GUI, please visit our website directly.
 
